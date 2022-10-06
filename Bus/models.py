@@ -84,7 +84,7 @@ class Reservation(models.Model):
     bus = models.ForeignKey(BusList,on_delete=models.CASCADE)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     current_date = models.DateTimeField(auto_now_add=True)
-    reservation_date = models.DateTimeField(auto_now_add=True)
+    reservation_date = models.DateTimeField()
     status = models.BooleanField(default=False)
     
 
