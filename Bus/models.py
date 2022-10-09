@@ -33,7 +33,6 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     username = None
-    id = models.AutoField(primary_key=True,auto_created=True)
     name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     password = models.CharField(max_length=100)
@@ -69,18 +68,16 @@ class User(AbstractBaseUser):
 
 
 class BusList(models.Model):
-    id = models.AutoField(primary_key=True,auto_created=True)
     bus_no = models.CharField(max_length=100)
     bus_name = models.CharField(max_length=100)
     from_place = models.CharField(max_length=100)
     to = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.bus_name
+    # def __str__(self):
+    #     return self.bus_name
 
 
 class Reservation(models.Model):
-    id = models.AutoField(primary_key=True,auto_created=True)
     bus = models.ForeignKey(BusList,on_delete=models.CASCADE)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     current_date = models.DateTimeField(auto_now_add=True)
@@ -91,3 +88,6 @@ class Reservation(models.Model):
 class Price(models.Model):
     bus = models.ForeignKey(BusList,on_delete=models.CASCADE)
     price = models.PositiveIntegerField()
+
+    class Meta:
+        unique_together = ('bus','price')

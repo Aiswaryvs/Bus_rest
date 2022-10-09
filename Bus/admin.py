@@ -1,8 +1,9 @@
 from msilib.schema import AdminUISequence
 from django.contrib import admin
-from Bus.models import BusList,User
+from Bus.models import BusList,User,Price
 
 # Register your models here.
 
 admin.site.register(BusList)
 admin.site.register(User)
+admin.site.register(Price)

@@ -23,11 +23,13 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 routers = DefaultRouter()
 routers.register("buses",views.BusView,basename="buses")
+routers.register("price",views.PriceView,basename="price")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/token',obtain_auth_token),
-    path('api/v1/user/register',views.UserRegistrationView.as_view())
+    path('api/v1/user/register',views.UserRegistrationView.as_view()),
+    path('api/v1/user/login',views.UserLoginView.as_view())
 
 
 ] + routers.urls
