@@ -48,19 +48,13 @@ class User(AbstractBaseUser):
         return self.email
 
     def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
         return self.is_admin
 
     def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
         return True
 
     @property
     def is_staff(self):
-        "Is the user a member of staff?"
-        # Simplest possible answer: All admins are staff
         return self.is_admin
     
     def __str__(self):
@@ -72,6 +66,7 @@ class BusList(models.Model):
     bus_name = models.CharField(max_length=100)
     from_place = models.CharField(max_length=100)
     to = models.CharField(max_length=100)
+    price = models.PositiveIntegerField()
 
     # def __str__(self):
     #     return self.bus_name
@@ -85,9 +80,9 @@ class Reservation(models.Model):
     status = models.BooleanField(default=False)
     
 
-class Price(models.Model):
-    bus = models.ForeignKey(BusList,on_delete=models.CASCADE)
-    price = models.PositiveIntegerField()
+# class Price(models.Model):
+#     bus = models.ForeignKey(BusList,on_delete=models.CASCADE)
+#     price = models.PositiveIntegerField()
 
-    class Meta:
-        unique_together = ('bus','price')
+#     class Meta:
+#         unique_together = ('bus','price')

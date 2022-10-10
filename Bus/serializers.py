@@ -2,7 +2,7 @@ from dataclasses import fields
 import email
 from pyexpat import model
 from rest_framework import serializers
-from Bus.models import BusList, Reservation, Price,User
+from Bus.models import BusList, Reservation,User
 
 
 
@@ -28,8 +28,18 @@ class UserLoginSerializer(serializers.ModelSerializer):
         model = User
         fields = ['email','password']
 
-class PriceSerializer(serializers.ModelSerializer):
-    bus = BusSerializer(read_only=True)
+# class PriceSerializer(serializers.ModelSerializer):
+#     # bus = BusSerializer(read_only=True)
+#     class Meta:
+#         model = Price
+#         fields = ['price','bus']
+
+
+class BookingSerializer(serializers.ModelSerializer):
+    # bus = BusSerializer()
+    # user = serializers.CharField()
     class Meta:
-        model = Price
-        fields = ['price','bus']
+        model= Reservation
+        fields = "__all__"
+
+   
